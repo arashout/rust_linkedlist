@@ -41,10 +41,7 @@ impl<T> List<T> {
 // TODO: Is the for keyword because we are implementing a trait?
 impl<T> Drop for List<T> {
     fn drop(&mut self) {
-        let mut cur_link = self.head.take();
-        while let Some(mut boxed_node) = cur_link {
-            cur_link = boxed_node.next.take();
-        }
+        while self.pop().is_some() {}
     }
 }
 pub struct IntoIter<T> {
